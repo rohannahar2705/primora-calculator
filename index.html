@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Primora Jewels Code Calculator</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#d4af37" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker Registered'));
+    }
+  </script>
+  <style>
+    :root {
+      --primary-color: #d4af37;
+      --bg-color: #1c1c1c;
+      --text-color: #ffffff;
+      --input-bg: #2c2c2c;
+      --input-border: #444;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Lato', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      background-color: #262626;
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    }
+    h1 {
+      font-size: 26px;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+    }
+    input {
+      width: 100%;
+      padding: 14px;
+      font-size: 18px;
+      border: 2px solid var(--input-border);
+      border-radius: 8px;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    input:focus {
+      border-color: var(--primary-color);
+    }
+    .output {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--primary-color);
+      letter-spacing: 1px;
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 22px; }
+      .output { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Primora Jewels Code Calculator</h1>
+    <input type="text" id="codeInput" placeholder="Type your code (e.g. PRLL)" oninput="convertCode()" />
+    <div class="output" id="result">Result: </div>
+  </div>
+  <script>
+    const codeMap = {
+      P: "1", R: "2", I: "3", M: "4",
+      O: "5", A: "6", J: "7", E: "8",
+      W: "9", L: "0"
+    };
+    function convertCode() {
+      const input = document.getElementById("codeInput").value.toUpperCase();
+      const output = input.split('').map(char => codeMap[char] || '').join('');
+      document.getElementById("result").innerText = "Result: " + output;
+    }
+  </script>
+</body>
+</html>
