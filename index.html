@@ -14,65 +14,120 @@
     }
   </script>
   <style>
-    :root {
-      --primary-color: #d4af37;
-      --bg-color: #1c1c1c;
-      --text-color: #ffffff;
-      --input-bg: #2c2c2c;
-      --input-border: #444;
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      font-family: 'Lato', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-    .container {
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-      background-color: #262626;
-      padding: 30px 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-    }
+  :root {
+    --primary-color: #1de9b6;
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --input-bg: #1e1e1e;
+    --input-border: #333;
+    --result-bg: #263238;
+    --result-text: var(--primary-color);
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    background-color: #1f1f1f;
+    padding: 30px 25px;
+    border-radius: 14px;
+    box-shadow: 0 0 20px rgba(29, 233, 182, 0.3);
+  }
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+  }
+
+  .instructions {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 25px;
+    line-height: 1.4;
+  }
+
+  input {
+    width: 100%;
+    padding: 16px;
+    font-size: 18px;
+    border: 2px solid var(--input-border);
+    border-radius: 10px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+  input::placeholder {
+    color: #666;
+  }
+
+  input:focus {
+    border-color: var(--primary-color);
+  }
+
+  .output {
+    margin-top: 30px;
+    font-size: 28px;
+    font-weight: 700;
+    background-color: var(--result-bg);
+    color: var(--result-text);
+    padding: 20px 15px;
+    border-radius: 12px;
+    letter-spacing: 1.2px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .output .currency {
+    margin-right: 8px;
+    font-weight: 900;
+    font-size: 28px;
+  }
+
+  @media (max-width: 480px) {
     h1 {
-      font-size: 26px;
-      margin-bottom: 20px;
-      color: var(--primary-color);
-    }
-    input {
-      width: 100%;
-      padding: 14px;
-      font-size: 18px;
-      border: 2px solid var(--input-border);
-      border-radius: 8px;
-      background-color: var(--input-bg);
-      color: var(--text-color);
-      outline: none;
-      transition: border-color 0.3s ease;
-    }
-    input:focus {
-      border-color: var(--primary-color);
+      font-size: 24px;
     }
     .output {
-      margin-top: 20px;
-      font-size: 22px;
-      font-weight: bold;
-      color: var(--primary-color);
-      letter-spacing: 1px;
+      font-size: 24px;
+      padding: 18px 12px;
+      min-height: 55px;
     }
-    @media (max-width: 480px) {
-      h1 { font-size: 22px; }
-      .output { font-size: 20px; }
-    }
-  </style>
+  }
+</style>
+
+<div class="container">
+  <h1>Primora Calculator</h1>
+
+  <div class="instructions">
+    Enter the value below to get the result in Indian Rupees (INR).
+  </div>
+
+  <input type="number" placeholder="Enter amount" id="inputValue" />
+
+  <div class="output" id="result">
+    <span class="currency">₹</span><span id="resultValue">0</span>
+  </div>
+</div>
+</style>
 </head>
 <body>
   <div class="container">
